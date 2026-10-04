@@ -1,4 +1,4 @@
-# Zelunia
+# Zelunia v1.0.0
 
 Zelunia es una tienda en línea de productos para descubrir. Presenta un catálogo obtenido desde la API pública de [DummyJSON](https://dummyjson.com/docs/products), permite buscar productos por nombre y comunica los estados de carga, error y búsqueda sin coincidencias.
 
