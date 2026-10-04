@@ -14,6 +14,10 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [retryCount, setRetryCount] = useState(0)
+  const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase('es')
+  const filteredProducts = products.filter((product) =>
+    product.title.toLocaleLowerCase('es').includes(normalizedSearchTerm),
+  )
 
   useEffect(() => {
     const controller = new AbortController()
@@ -86,8 +90,9 @@ function App() {
               <p className="section-kicker">La selección Zelunia</p>
               <h2>Lo que nos gusta ahora</h2>
             </div>
-            <p className="product-count">
-              <span>{String(products.length).padStart(2, '0')}</span> objetos para descubrir
+            <p className="product-count" aria-live="polite">
+              <span>{String(filteredProducts.length).padStart(2, '0')}</span>
+              {normalizedSearchTerm ? ' resultados encontrados' : ' objetos para descubrir'}
             </p>
           </div>
           {loading ? (
@@ -97,8 +102,18 @@ function App() {
               message={error}
               onRetry={() => setRetryCount((currentCount) => currentCount + 1)}
             />
-          ) : products.length > 0 ? (
-            <ProductList products={products} />
+          ) : filteredProducts.length > 0 ? (
+            <ProductList products={filteredProducts} />
+          ) : normalizedSearchTerm ? (
+            <div className="empty-state no-results" role="status" aria-live="polite">
+              <p>
+                No encontramos productos para <strong>“{searchTerm.trim()}”</strong>.
+              </p>
+              <span>Prueba con otro nombre o revisa la escritura.</span>
+              <button type="button" onClick={() => setSearchTerm('')}>
+                Ver todos los productos
+              </button>
+            </div>
           ) : (
             <p className="empty-state">Todavía no hay productos para mostrar.</p>
           )}
