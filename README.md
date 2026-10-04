@@ -1,6 +1,6 @@
-# Zelunia v1.0.0
+# Zelunia v1.1.0
 
-Zelunia es una tienda en línea de productos para descubrir. Presenta un catálogo obtenido desde la API pública de [DummyJSON](https://dummyjson.com/docs/products), permite buscar productos por nombre y comunica los estados de carga, error y búsqueda sin coincidencias.
+Zelunia es una tienda en línea de productos para descubrir. Presenta el catálogo completo disponible en la API pública de [DummyJSON](https://dummyjson.com/docs/products), permite buscar productos por nombre y explorar el catálogo por categorías, agregar productos a una bolsa de compra y revisar cantidades y resumen. La compra es demostrativa y no procesa pagos.
 
 ## Sitio web
 
@@ -22,8 +22,10 @@ Zelunia es una tienda en línea de productos para descubrir. Presenta un catálo
 | --- | --- |
 | `Header` | Muestra la marca Zelunia y la navegación principal. |
 | `SearchBar` | Expone un campo de búsqueda controlado mediante props. |
+| `CategoryFilter` | Permite filtrar el catálogo por categoría. |
 | `ProductCard` | Presenta la imagen, categoría, calificación, descripción y precio de un producto recibido por props. |
 | `ProductList` | Renderiza el catálogo como una lista de tarjetas de producto. |
+| `CartPage` | Muestra los productos agregados, permite ajustar cantidades y presenta el resumen de compra. |
 | `Loader` | Informa que el catálogo se está cargando. |
 | `ErrorMessage` | Explica el error de carga y permite volver a intentarlo. |
 | `Footer` | Muestra información básica de Zelunia y un correo de contacto. |
@@ -72,3 +74,7 @@ npm run preview  # Previsualiza la versión generada
 ## Catálogo y búsqueda
 
 La aplicación solicita los productos a `https://dummyjson.com/products` con `fetch` dentro de `useEffect`. Mientras espera, presenta el indicador de carga; si la solicitud falla, muestra un mensaje con opción para reintentar. El buscador filtra por nombre sin distinguir mayúsculas y muestra una acción para volver al catálogo completo cuando no hay coincidencias.
+
+## Bolsa de compra
+
+Cada producto se puede agregar a la bolsa. Desde allí se pueden modificar cantidades, quitar productos y revisar el total con los precios rebajados. La tienda no procesa pagos.

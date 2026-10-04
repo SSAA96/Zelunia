@@ -1,7 +1,9 @@
 import type { Product } from '../types/product'
+import { getCategoryLabel } from '../utils/category'
 
 interface ProductCardProps {
   product: Product
+  onAddToCart: (product: Product) => void
 }
 
 const formatPrice = (price: number) =>
@@ -12,7 +14,7 @@ const formatPrice = (price: number) =>
     maximumFractionDigits: 2,
   }).format(price)
 
-function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const discountedPrice = product.price * (1 - product.discountPercentage / 100)
 
   return (
@@ -40,7 +42,7 @@ function ProductCard({ product }: ProductCardProps) {
       </div>
       <div className="product-info">
         <div className="product-meta">
-          <span>{product.category}</span>
+          <span>{getCategoryLabel(product.category)}</span>
           <span className="rating" aria-label={`Calificación ${product.rating} de 5`}>
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="m8 1.5 1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.2l-3.8 2.1.7-4.3-3.1-3 4.3-.6L8 1.5Z" fill="currentColor" />
@@ -56,6 +58,9 @@ function ProductCard({ product }: ProductCardProps) {
             <span className="original-price">{formatPrice(product.price)}</span>
           )}
         </div>
+        <button className="add-to-cart-button" type="button" onClick={() => onAddToCart(product)}>
+          Agregar a la bolsa
+        </button>
       </div>
     </article>
   )
