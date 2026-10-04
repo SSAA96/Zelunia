@@ -1,121 +1,59 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import ProductList from './components/ProductList'
+import SearchBar from './components/SearchBar'
+import { sampleProducts } from './data/products'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="storefront" id="inicio">
+      <Header />
+      <main>
+        <section className="hero-section">
+          <div className="hero-copy">
+            <p className="hero-kicker">
+              <span className="kicker-dot" aria-hidden="true" />
+              Una tienda para mirar distinto
+            </p>
+            <h1>Pequeños hallazgos. Días más tuyos.</h1>
+            <p className="hero-description">
+              Cosas bien elegidas para acompañarte en casa, en tus planes y en todo lo que viene.
+            </p>
+          </div>
+          <div className="hero-art" aria-label="Selección de objetos cotidianos" role="img">
+            <span className="art-orbit orbit-one" />
+            <span className="art-orbit orbit-two" />
+            <span className="art-sun" />
+            <span className="art-caption">La buena vida<br />está en los detalles.</span>
+            <span className="art-sparkle" aria-hidden="true">✳</span>
+          </div>
+        </section>
 
-      <div className="ticks"></div>
+        <section className="discovery-section" aria-label="Buscar en Zelunia">
+          <SearchBar value={searchTerm} onChange={setSearchTerm} />
+          <p className="discovery-note">Ideas nuevas, momentos simples y favoritos por descubrir.</p>
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section className="catalog-section" id="productos">
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">La selección Zelunia</p>
+              <h2>Lo que nos gusta ahora</h2>
+            </div>
+            <p className="product-count">
+              <span>{String(sampleProducts.length).padStart(2, '0')}</span> objetos para descubrir
+            </p>
+          </div>
+          <ProductList products={sampleProducts} />
+        </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      </main>
+      <Footer />
+    </div>
   )
 }
 
