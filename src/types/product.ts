@@ -8,3 +8,10 @@ export interface Product {
   rating: number
   thumbnail: string
 }
+
+export interface ProductResponse {
+  products: Product[]
+  total: number
+  skip: number
+  limit: number
+}

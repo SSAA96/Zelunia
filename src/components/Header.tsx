@@ -2,7 +2,7 @@ function Header() {
   return (
     <>
       <div className="announcement">
-        <p>Envío gratis en compras sobre $60.000</p>
+        <p>Envío gratis en compras sobre US$60</p>
       </div>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Zelunia, ir al inicio">

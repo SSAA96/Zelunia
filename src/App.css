@@ -371,6 +371,15 @@
 
 .state-message p { margin: 0; }
 
+.empty-state {
+  margin: 0;
+  padding: 56px 20px;
+  color: var(--muted);
+  background: #f2f5f2;
+  font-size: 13px;
+  text-align: center;
+}
+
 .loader-spinner {
   width: 17px;
   height: 17px;

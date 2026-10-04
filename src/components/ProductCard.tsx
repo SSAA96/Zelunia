@@ -7,8 +7,9 @@ interface ProductCardProps {
 const formatPrice = (price: number) =>
   new Intl.NumberFormat('es-CL', {
     style: 'currency',
-    currency: 'CLP',
-    maximumFractionDigits: 0,
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(price)
 
 function ProductCard({ product }: ProductCardProps) {
